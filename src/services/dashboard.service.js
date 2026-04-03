@@ -1,7 +1,10 @@
 import Record from "../models/record.model.js";
 
+const activeOnly = { $match: { isDeleted: { $ne: true } } };
+
 export const getSummary = async () => {
   const result = await Record.aggregate([
+    activeOnly,
     {
       $group: {
         _id: "$type",
@@ -22,6 +25,7 @@ export const getSummary = async () => {
 
 export const getCategoryBreakdown = async () => {
   const result = await Record.aggregate([
+    activeOnly,
     {
       $group: {
         _id: "$category",
@@ -43,6 +47,7 @@ export const getCategoryBreakdown = async () => {
 
 export const getMonthlyBreakdown = async () => {
   const result = await Record.aggregate([
+    activeOnly,
     {
       $group: {
         _id: { $month: "$date" },

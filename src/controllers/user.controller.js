@@ -1,9 +1,10 @@
 import * as userService from "../services/user.service.js";
+import { success } from "../utils/apiResponse.js";
 
 export const createUser = async (req, res, next) => {
   try {
     const user = await userService.createUser(req.body);
-    res.status(201).json(user);
+    success(res, 201, "User created", user);
   } catch (error) {
     next(error);
   }
@@ -12,7 +13,7 @@ export const createUser = async (req, res, next) => {
 export const getUsers = async (req, res, next) => {
   try {
     const users = await userService.getAllUsers();
-    res.status(200).json(users);
+    success(res, 200, "Users fetched", users);
   } catch (error) {
     next(error);
   }
@@ -24,7 +25,7 @@ export const updateUserRole = async (req, res, next) => {
       req.params.id,
       req.body.role
     );
-    res.status(200).json(user);
+    success(res, 200, "User role updated", user);
   } catch (error) {
     next(error);
   }

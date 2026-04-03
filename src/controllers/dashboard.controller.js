@@ -1,9 +1,10 @@
 import * as dashboardService from "../services/dashboard.service.js";
+import { success } from "../utils/apiResponse.js";
 
 export const getSummary = async (req, res, next) => {
   try {
     const summary = await dashboardService.getSummary();
-    res.status(200).json(summary);
+    success(res, 200, "Summary fetched", summary);
   } catch (error) {
     next(error);
   }
@@ -12,7 +13,7 @@ export const getSummary = async (req, res, next) => {
 export const getCategoryBreakdown = async (req, res, next) => {
   try {
     const data = await dashboardService.getCategoryBreakdown();
-    res.status(200).json(data);
+    success(res, 200, "Category breakdown fetched", data);
   } catch (error) {
     next(error);
   }
@@ -21,7 +22,7 @@ export const getCategoryBreakdown = async (req, res, next) => {
 export const getMonthlyBreakdown = async (req, res, next) => {
   try {
     const data = await dashboardService.getMonthlyBreakdown();
-    res.status(200).json(data);
+    success(res, 200, "Monthly breakdown fetched", data);
   } catch (error) {
     next(error);
   }
