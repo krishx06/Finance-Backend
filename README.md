@@ -96,90 +96,15 @@ Server starts at `http://localhost:5000`
 
 ## API Endpoints
 
-### Authentication
+> **API TESTING GUIDE:** Looking to test these endpoints in Postman? I've created a comprehensive, copy-paste ready guide for you!
+> **[Click here to view the API Testing Guide](API_TESTING_GUIDE.md)** for details on headers, JSON body templates, exact roles needed, and query parameters.
 
-| Method | Endpoint           | Description       | Access |
-|--------|--------------------|--------------------|--------|
-| POST   | `/api/auth/signup` | Register a user    | Public |
-| POST   | `/api/auth/login`  | Login and get token| Public |
+### Broad Overview
 
-**Signup body:**
-```json
-{
-  "name": "Krish",
-  "email": "krish@test.com",
-  "password": "password123",
-  "role": "admin"
-}
-```
-
-**Login body:**
-```json
-{
-  "email": "krish@test.com",
-  "password": "password123"
-}
-```
-
-### User Management
-
-| Method | Endpoint                 | Description         | Access |
-|--------|--------------------------|----------------------|--------|
-| POST   | `/api/users`             | Create a user        | Admin  |
-| GET    | `/api/users`             | Get all users        | Admin  |
-| PATCH  | `/api/users/:id/role`    | Update user role     | Admin  |
-| PATCH  | `/api/users/:id/status`  | Activate/deactivate  | Admin  |
-
-**Update role body:**
-```json
-{ "role": "analyst" }
-```
-
-**Update status body:**
-```json
-{ "status": "inactive" }
-```
-
-### Financial Records
-
-| Method | Endpoint            | Description      | Access         |
-|--------|---------------------|-------------------|----------------|
-| POST   | `/api/records`      | Create record     | Admin          |
-| GET    | `/api/records`      | Get records       | Admin, Analyst |
-| PUT    | `/api/records/:id`  | Update record     | Admin          |
-| DELETE | `/api/records/:id`  | Soft delete record| Admin          |
-
-**Create record body:**
-```json
-{
-  "amount": 50000,
-  "type": "income",
-  "category": "salary",
-  "note": "April salary",
-  "date": "2026-04-01"
-}
-```
-
-**Query parameters for GET:**
-
-| Param      | Description                    | Example              |
-|------------|--------------------------------|----------------------|
-| `type`     | Filter by income or expense    | `?type=income`       |
-| `category` | Filter by category             | `?category=salary`   |
-| `startDate`| Filter from date               | `?startDate=2026-04-01` |
-| `endDate`  | Filter to date                 | `?endDate=2026-04-30`   |
-| `search`   | Search in category and notes   | `?search=rent`       |
-| `page`     | Page number (default 1)        | `?page=1`            |
-| `limit`    | Records per page (default 10)  | `?limit=5`           |
-
-### Dashboard Analytics
-
-| Method | Endpoint                 | Description              | Access         |
-|--------|--------------------------|--------------------------|----------------|
-| GET    | `/api/dashboard/summary` | Total income, expense, net balance | All roles |
-| GET    | `/api/dashboard/category`| Category-wise totals     | All roles      |
-| GET    | `/api/dashboard/monthly` | Monthly trends           | All roles      |
-| GET    | `/api/dashboard/recent`  | Last 5 records           | All roles      |
+- **`/api/auth/`** — Signup and login (Public)
+- **`/api/users/`** — User CRUD, role updates, and active/inactive status switches (Admin only)
+- **`/api/records/`** — Financial records CRUD, dynamic filtering, pagination, search, and soft-delete (Admin write, Analyst read)
+- **`/api/dashboard/`** — MongoDB aggregation pipelines for dashboard charts, summary statistics, and recent activity (Accessible by all roles)
 
 ## Role-Based Access Control
 
