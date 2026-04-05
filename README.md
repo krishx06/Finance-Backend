@@ -94,6 +94,13 @@ npm run dev
 
 Server starts at `http://localhost:5000`
 
+### Try the Database Seeder!
+Before testing, you can auto-populate the database with 3 mock users (`admin`, `analyst`, `viewer`) and **20 randomized financial records** spanning the last 90 days:
+```bash
+npm run seed
+```
+*(This makes testing the dashboard aggregation APIs instantly rewarding!)*
+
 ## API Endpoints
 
 > **API TESTING GUIDE:** Looking to test these endpoints in Postman? I've created a comprehensive, copy-paste ready guide for you!
