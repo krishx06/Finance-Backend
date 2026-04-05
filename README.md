@@ -2,6 +2,9 @@
 
 A RESTful backend API for a finance dashboard system built with Node.js, Express, and MongoDB. Supports user management, role-based access control, financial record CRUD with filtering, and dashboard analytics using MongoDB aggregation.
 
+>**LIVE DEPLOYMENT:** The API is actively hosted on Render!      
+>**Base URL:** <https://finance-backend-3wij.onrender.com>
+
 ## Tech Stack
 
 - **Runtime:** Node.js

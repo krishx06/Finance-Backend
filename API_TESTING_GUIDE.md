@@ -3,7 +3,7 @@
 This guide provides everything you need to easily test the Finance Backend via Postman or cURL. 
 
 ## Base Setup
-- **Base URL:** `http://localhost:5000/api`
+- **Base URL:** `https://finance-backend-3wij.onrender.com`
 - **Protected Endpoints Header:** 
   - Key: `Authorization`
   - Value: `Bearer <your-token-here>`
