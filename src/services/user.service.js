@@ -23,3 +23,11 @@ export const updateUserRole = async (userId, role) => {
     { new: true }
   ).select("-password");
 };
+
+export const updateUserStatus = async (userId, status) => {
+  return await User.findByIdAndUpdate(
+    userId,
+    { status },
+    { new: true }
+  ).select("-password");
+};

@@ -38,6 +38,12 @@ export const login = async ({ email, password }) => {
     throw error;
   }
 
+  if (user.status === "inactive") {
+    const error = new Error("Account is deactivated");
+    error.statusCode = 403;
+    throw error;
+  }
+
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
     const error = new Error("Invalid email or password");

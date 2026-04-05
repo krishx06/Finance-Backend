@@ -27,3 +27,12 @@ export const getMonthlyBreakdown = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getRecentActivity = async (req, res, next) => {
+  try {
+    const data = await dashboardService.getRecentActivity();
+    success(res, 200, "Recent activity fetched", data);
+  } catch (error) {
+    next(error);
+  }
+};

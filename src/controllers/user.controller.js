@@ -30,3 +30,15 @@ export const updateUserRole = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateUserStatus = async (req, res, next) => {
+  try {
+    const user = await userService.updateUserStatus(
+      req.params.id,
+      req.body.status
+    );
+    success(res, 200, "User status updated", user);
+  } catch (error) {
+    next(error);
+  }
+};

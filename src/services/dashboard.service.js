@@ -66,3 +66,10 @@ export const getMonthlyBreakdown = async () => {
 
   return result;
 };
+
+export const getRecentActivity = async () => {
+  return await Record.find({ isDeleted: { $ne: true } })
+    .populate("user", "name email")
+    .sort({ date: -1 })
+    .limit(5);
+};
